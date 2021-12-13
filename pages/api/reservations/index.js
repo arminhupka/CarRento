@@ -3,6 +3,7 @@ import dbConnect from '../../../utils/dbConnect';
 
 // Schema
 import Reservation from '../../../schemas/ReservationSchema';
+import {getSession} from 'next-auth/react';
 
 const handler = nc({
   onError: (err, req, res) => {
@@ -12,12 +13,44 @@ const handler = nc({
   onNoMatch: (req, res) => {
     res.status(404).end('Page is not found');
   },
-}).get(async (req, res) => {
-  await dbConnect();
+})
+  .get(async (req, res) => {
+    const session = await getSession({req});
 
-  const reservations = await Reservation.find();
+    if (!session) {
+      return res.status(401).json({
+        message: 'You are not authorized',
+      });
+    }
 
-  res.json(reservations);
-});
+    await dbConnect();
+
+    const reservations = await Reservation.find();
+
+    res.json(reservations);
+  })
+  .post(async (req, res) => {
+    const {firstName, lastName, email, phone, address, city, postalCode} = req.body;
+
+    if (!firstName || !lastName || !email || !phone || !address || !city || !postalCode) {
+      return res.status(400).json({
+        message: 'You must provide all data',
+      });
+    }
+
+    await Reservation.create({
+      firstName,
+      lastName,
+      email,
+      phone,
+      address,
+      city,
+      postalCode,
+    });
+
+    res.status(201).json({
+      message: 'Reservation created',
+    });
+  });
 
 export default handler;

@@ -13,10 +13,14 @@ module.exports = {
         xl: '1240px',
       },
     },
-    extend: {},
+    extend: {
+      maxHeight: {
+        128: '52rem',
+      },
+    },
   },
   variants: {
     extend: {},
   },
-  plugins: [require('tailwind-scrollbar-hide')],
+  plugins: [],
 };

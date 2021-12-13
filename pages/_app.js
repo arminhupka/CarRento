@@ -1,7 +1,21 @@
-import '../styles/globals.css'
+import React from 'react';
+import {SessionProvider} from 'next-auth/react';
+import '../styles/globals.css';
+import CallNow from '../components/CallNow/CallNow';
+import AuthProvider from '../providers/AuthProvider';
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
-
-export default MyApp
+const App = ({Component, pageProps}) => (
+  <>
+    <CallNow />
+    <SessionProvider session={pageProps.session}>
+      {Component.auth ? (
+        <AuthProvider component={Component}>
+          <Component {...pageProps} />
+        </AuthProvider>
+      ) : (
+        <Component {...pageProps} />
+      )}
+    </SessionProvider>
+  </>
+);
+export default App;
