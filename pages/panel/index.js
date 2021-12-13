@@ -8,6 +8,8 @@ import MainLayout from '../../layouts/MainLayout';
 // Components
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
+import SectionTitle from '../../components/SectionTitle/SectionTitle';
+import PageHeader from '../../components/PageHeader/PageHeader';
 
 const LoginPage = () => {
   const validate = (values) => {
@@ -41,15 +43,11 @@ const LoginPage = () => {
 
   return (
     <MainLayout>
+      <PageHeader title="Logowanie" />
       <div className="container">
         <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0">
-          <div className="flex-1">
-            <h1>Panel klienta</h1>
-          </div>
           <div className="flex-1 p-4 bg-white border rounded-md shadow-lg">
-            <div className="pb-4 border-b">
-              <h2 className="text-2xl font-semibold">Zaloguj się</h2>
-            </div>
+            <SectionTitle title="Zaloguj się" />
             <form className="w-full mt-4 flex flex-col space-y-4" onSubmit={formik.handleSubmit}>
               <div>
                 <label className="block mb-2 text-black font-semibold">Adres email</label>
@@ -64,7 +62,7 @@ const LoginPage = () => {
                 {formik.errors.email ? <div>{formik.errors.email}</div> : null}
               </div>
               <div>
-                <label className="block mb-2 text-black font-semibold">Password</label>
+                <label className="block mb-2 text-black font-semibold">Hasło</label>
                 <Input
                   type="password"
                   placeholder="Hasło"

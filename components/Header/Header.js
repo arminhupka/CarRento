@@ -35,7 +35,7 @@ const Header = () => {
         </h1>
         <Nav visible={isVisible} />
         <div className="hidden lg:flex space-x-4">
-          {!session && <LinkButton href="/zaloguj">Zaloguj się</LinkButton>}
+          {!session && <LinkButton href="/panel">Zaloguj się</LinkButton>}
           {session && session.user.role === 'admin' && (
             <LinkButton bordered href="/admin">
               Administracja

@@ -36,8 +36,9 @@ const UserFormModal = ({onClose}) => {
   const handleSubmit = (form) => {
     const selectedCar = JSON.parse(localStorage.getItem('selectedCar'));
     const reservation = JSON.parse(localStorage.getItem('reservation'));
+    const insurance = JSON.parse(localStorage.getItem('insurance'));
 
-    console.log(form, selectedCar, reservation);
+    console.log({form, selectedCar, reservation, insurance});
   };
 
   return (
