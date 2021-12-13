@@ -20,34 +20,29 @@ const UserFormModal = ({onClose}) => {
     error: '',
   };
 
-  // const SignupSchema = Yup.object().shape({
-  //   firstName: Yup.string()
-  //     .min(2, 'Too Short!')
-  //     .max(50, 'Too Long!')
-  //     .required('Required'),
-  //   lastName: Yup.string()
-  //     .min(2, 'Too Short!')
-  //     .max(50, 'Too Long!')
-  //     .required('Required'),
-  //   email: Yup.string().email('Invalid email').required('Required'),
-  // });
-
   const formSchema = Yup.object().shape({
-    firstName: Yup.string().required('Wymagane'),
-    lastName: Yup.string().required('Wymagane'),
-    email: Yup.string().email('Niepoprawny adres email').required('Wymagane'),
-    phone: Yup.string()
-      .min(9, 'Niepoprawny format telefonu')
-      .max(9, 'Niepoprawny format telefonu')
-      .required('Wymagane'),
-    city: Yup.string().required('Wymagane'),
-    address: Yup.string().required('Wymagane'),
-    postalCode: Yup.string().matches('/^[0-9]{2}-[0-9]{3}/s', 'Niepoprawny format').required('Wymagane'),
+    // firstName: Yup.string().required('Wymagane'),
+    // lastName: Yup.string().required('Wymagane'),
+    // email: Yup.string().email('Niepoprawny adres email').required('Wymagane'),
+    // phone: Yup.string()
+    //   .min(9, 'Niepoprawny format telefonu')
+    //   .max(9, 'Niepoprawny format telefonu')
+    //   .required('Wymagane'),
+    // address: Yup.string().required('Wymagane'),
+    // city: Yup.string().required('Wymagane'),
+    // postalCode: Yup.string().match('/^[0-9]{2}-[0-9]{3}/s', 'Niepoprawny format').required('Wymagane'),
   });
+
+  const handleSubmit = (form) => {
+    const selectedCar = JSON.parse(localStorage.getItem('selectedCar'));
+    const reservation = JSON.parse(localStorage.getItem('reservation'));
+
+    console.log(form, selectedCar, reservation);
+  };
 
   return (
     <Modal title="Wprowadź swoje dane" onClose={onClose}>
-      <Formik initialValues={initialState} onSubmit={(values) => console.log(values)} validationSchema={formSchema}>
+      <Formik initialValues={initialState} onSubmit={handleSubmit} validationSchema={formSchema}>
         {({values, handleSubmit, handleChange, errors}) => (
           <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
             <div>
