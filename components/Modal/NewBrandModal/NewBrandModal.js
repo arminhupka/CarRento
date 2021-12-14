@@ -6,6 +6,7 @@ import axios from 'axios';
 // Components
 import Modal from '../Modal';
 import Button from '../../Button/Button';
+import Loader from '../../Loader/Loader';
 
 const NewBrandModal = ({onClose}) => {
   const [loading, setLoading] = useState(false);
@@ -17,7 +18,7 @@ const NewBrandModal = ({onClose}) => {
     },
     onSubmit: async (values) => {
       setLoading(true);
-      const {data} = await axios({
+      await axios({
         method: 'POST',
         url: '/api/brands',
         data: {
@@ -37,7 +38,7 @@ const NewBrandModal = ({onClose}) => {
 
   return (
     <Modal title="Dodaj nową markę" onClose={onClose}>
-      {loading && <span>Ładowanie ...</span>}
+      {loading && <Loader />}
       {!loading && (
         <form onSubmit={handleAddBrand} className="flex flex-col space-y-2">
           <label htmlFor="brand" className="text-black font-semibold">

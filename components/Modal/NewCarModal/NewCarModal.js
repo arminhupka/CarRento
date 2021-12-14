@@ -7,6 +7,7 @@ import {useRouter} from 'next/router';
 import Modal from '../Modal';
 import Button from '../../Button/Button';
 import Input from '../../Input/Input';
+import Loader from '../../Loader/Loader';
 
 const NewCarModal = ({brands, onClose}) => {
   const router = useRouter();
@@ -14,7 +15,7 @@ const NewCarModal = ({brands, onClose}) => {
 
   return (
     <Modal title="Dodaj nowy samochód" onClose={onClose}>
-      {loading && <span>Dodawanie ...</span>}
+      {loading && <Loader />}
       {!loading && (
         <Formik
           initialValues={{

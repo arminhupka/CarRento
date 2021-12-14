@@ -37,6 +37,11 @@ const ReservationSchema = new Schema(
       ref: 'Car',
       required: true,
     },
+    insurance: {
+      type: Schema.Types.ObjectId,
+      ref: 'Insurance',
+      required: true,
+    },
     pickupPlace: {
       type: String,
       required: true,

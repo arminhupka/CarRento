@@ -1,14 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
 
 // Components
 import Input from '../../Input/Input';
 import Modal from '../Modal';
 import Label from '../../Label/Label';
 import Button from '../../Button/Button';
+import Loader from '../../Loader/Loader';
 
 const UserFormModal = ({onClose}) => {
+  const [loading, setLoading] = useState(false);
+
   const initialState = {
     firstName: '',
     lastName: '',
@@ -33,61 +37,83 @@ const UserFormModal = ({onClose}) => {
     // postalCode: Yup.string().match('/^[0-9]{2}-[0-9]{3}/s', 'Niepoprawny format').required('Wymagane'),
   });
 
-  const handleSubmit = (form) => {
+  const handleSubmit = async (form) => {
     const selectedCar = JSON.parse(localStorage.getItem('selectedCar'));
     const reservation = JSON.parse(localStorage.getItem('reservation'));
-    const insurance = JSON.parse(localStorage.getItem('insurance'));
+    const insurance = localStorage.getItem('insurance');
 
-    console.log({
-      user: form,
-      car: selectedCar.id,
-      insurance,
-      reservation,
+    setLoading(true);
+
+    await axios({
+      method: 'POST',
+      url: '/api/reservations',
+      data: {
+        user: {
+          firstName: form.firstName,
+          lastName: form.lastName,
+          email: form.email,
+          phone: form.phone,
+          address: form.address,
+          city: form.city,
+          postalCode: form.postalCode,
+        },
+        car: selectedCar.id,
+        insurance,
+        pickupPlace: reservation.pickupPlace,
+        pickupDate: reservation.pickupDate,
+        returnPlace: reservation.returnPlace,
+        returnDate: reservation.returnDate,
+      },
     });
+
+    setLoading(false);
   };
 
   return (
     <Modal title="Wprowadź swoje dane" onClose={onClose}>
-      <Formik initialValues={initialState} onSubmit={handleSubmit} validationSchema={formSchema}>
-        {({values, handleSubmit, handleChange, errors}) => (
-          <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-            <div>
-              <Label>Imię</Label>
-              <Input type="text" name="firstName" value={values.firstName} onChange={handleChange} />
-            </div>
-            <div>
-              <Label>Nazwisko</Label>
-              <Input type="text" name="lastName" value={values.lastName} onChange={handleChange} />
-            </div>
-            <div>
-              <Label>Adres email</Label>
-              <Input type="text" name="email" value={values.email} onChange={handleChange} />
-              <span className="text-sm">{errors.email}</span>
-            </div>
-            <div>
-              <Label>Numer telefonu</Label>
-              <Input type="t ext" name="phone" value={values.phone} onChange={handleChange} />
-              <span className="text-sm">{errors.phone}</span>
-            </div>
-            <div>
-              <Label>Adres</Label>
-              <Input type="text" name="address" value={values.address} onChange={handleChange} />
-              <span className="text-sm">{errors.address}</span>
-            </div>
-            <div>
-              <Label>Miasto</Label>
-              <Input type="text" name="city" value={values.city} onChange={handleChange} />
-              <span className="text-sm">{errors.city}</span>
-            </div>
-            <div>
-              <Label>Kod pocztowy</Label>
-              <Input type="text" name="postalCode" value={values.postalCode} onChange={handleChange} />
-              <span className="text-sm">{errors.postalCode}</span>
-            </div>
-            <Button type="submit">Wyślij rezerwację</Button>
-          </form>
-        )}
-      </Formik>
+      {loading && <Loader />}
+      {!loading && (
+        <Formik initialValues={initialState} onSubmit={handleSubmit} validationSchema={formSchema}>
+          {({values, handleSubmit, handleChange, errors}) => (
+            <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+              <div>
+                <Label>Imię</Label>
+                <Input type="text" name="firstName" value={values.firstName} onChange={handleChange} />
+              </div>
+              <div>
+                <Label>Nazwisko</Label>
+                <Input type="text" name="lastName" value={values.lastName} onChange={handleChange} />
+              </div>
+              <div>
+                <Label>Adres email</Label>
+                <Input type="text" name="email" value={values.email} onChange={handleChange} />
+                <span className="text-sm">{errors.email}</span>
+              </div>
+              <div>
+                <Label>Numer telefonu</Label>
+                <Input type="t ext" name="phone" value={values.phone} onChange={handleChange} />
+                <span className="text-sm">{errors.phone}</span>
+              </div>
+              <div>
+                <Label>Adres</Label>
+                <Input type="text" name="address" value={values.address} onChange={handleChange} />
+                <span className="text-sm">{errors.address}</span>
+              </div>
+              <div>
+                <Label>Miasto</Label>
+                <Input type="text" name="city" value={values.city} onChange={handleChange} />
+                <span className="text-sm">{errors.city}</span>
+              </div>
+              <div>
+                <Label>Kod pocztowy</Label>
+                <Input type="text" name="postalCode" value={values.postalCode} onChange={handleChange} />
+                <span className="text-sm">{errors.postalCode}</span>
+              </div>
+              <Button type="submit">Wyślij rezerwację</Button>
+            </form>
+          )}
+        </Formik>
+      )}
     </Modal>
   );
 };

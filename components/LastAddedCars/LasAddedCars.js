@@ -8,6 +8,7 @@ const LastAdded = ({cars}) => (
         {cars.map((car) => (
           <CarCard
             key={car._id}
+            id={car._id}
             image={car.image}
             type={car.type}
             model={car.model}

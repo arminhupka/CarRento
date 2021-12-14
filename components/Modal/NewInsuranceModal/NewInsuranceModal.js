@@ -7,6 +7,7 @@ import {useRouter} from 'next/router';
 import Modal from '../Modal';
 import Button from '../../Button/Button';
 import Input from '../../Input/Input';
+import Loader from '../../Loader/Loader';
 
 const NewInsuranceModal = ({onClose}) => {
   const router = useRouter();
@@ -14,7 +15,7 @@ const NewInsuranceModal = ({onClose}) => {
 
   return (
     <Modal title="Nowe ubezpieczenie" onClose={onClose}>
-      {loading && <span>Dodawanie ...</span>}
+      {loading && <Loader />}
       {!loading && (
         <Formik
           initialValues={{
@@ -41,7 +42,7 @@ const NewInsuranceModal = ({onClose}) => {
             router.replace(router.asPath);
           }}
         >
-          {({handleChange, handleSubmit, setFieldValue}) => (
+          {({handleChange, handleSubmit}) => (
             <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
               <div>
                 <label className="block mb-2 text-black font-semibold">Nazwa wariatnu</label>

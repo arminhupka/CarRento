@@ -1,9 +1,11 @@
 import nc from 'next-connect';
+import {getSession} from 'next-auth/react';
+
+// Utils
 import dbConnect from '../../../utils/dbConnect';
 
 // Schema
 import Reservation from '../../../schemas/ReservationSchema';
-import {getSession} from 'next-auth/react';
 
 const handler = nc({
   onError: (err, req, res) => {
@@ -30,22 +32,52 @@ const handler = nc({
     res.json(reservations);
   })
   .post(async (req, res) => {
-    const {firstName, lastName, email, phone, address, city, postalCode} = req.body;
+    const {
+      user: {firstName, lastName, email, phone, address, city, postalCode},
+      car,
+      insurance,
+      pickupPlace,
+      pickupDate,
+      returnPlace,
+      returnDate,
+    } = req.body;
 
-    if (!firstName || !lastName || !email || !phone || !address || !city || !postalCode) {
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !phone ||
+      !address ||
+      !city ||
+      !postalCode ||
+      !car ||
+      !insurance ||
+      !pickupPlace ||
+      !pickupDate ||
+      !returnPlace ||
+      !returnDate
+    ) {
       return res.status(400).json({
         message: 'You must provide all data',
       });
     }
 
     await Reservation.create({
-      firstName,
-      lastName,
-      email,
-      phone,
-      address,
-      city,
-      postalCode,
+      user: {
+        firstName,
+        lastName,
+        email,
+        phone,
+        address,
+        city,
+        postalCode,
+      },
+      car,
+      insurance,
+      pickupPlace,
+      pickupDate,
+      returnPlace,
+      returnDate,
     });
 
     res.status(201).json({
