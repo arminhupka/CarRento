@@ -10,7 +10,7 @@ import User from '../../../schemas/UserSchema';
 export default NextAuth({
   secret: 'fusdiofyus876df78suhgdfustdfuysgdufyts67dft7s6tdf78sdg76yfts76dgtfuys',
   pages: {
-    signIn: '/panel',
+    signIn: '/logowanie',
   },
   session: {
     strategy: 'jwt',

@@ -34,15 +34,14 @@ const Header = () => {
           </Link>
         </h1>
         <Nav visible={isVisible} />
-        <div className="hidden lg:flex space-x-4">
-          {!session && <LinkButton href="/panel">Zaloguj się</LinkButton>}
-          {session && session.user.role === 'admin' && (
+        {session && (
+          <div className="lg:flex space-x-4">
             <LinkButton bordered href="/admin">
               Administracja
             </LinkButton>
-          )}
-          {session && <Button onClick={handleLogout}>Wyloguj</Button>}
-        </div>
+            <Button onClick={handleLogout}>Wyloguj</Button>
+          </div>
+        )}
         <div className="lg:hidden">
           <button type="button" onClick={onToggle}>
             <FaBars className="text-3xl text-red-500" />

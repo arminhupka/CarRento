@@ -3,8 +3,8 @@ import {MdMoneyOff} from 'react-icons/md';
 import FeatureCard from '../FeatureCard/FeatureCard';
 
 const WhyUs = () => (
-  <section>
-    <div className="container my-20 grid md:grid-cols-3 gap-8">
+  <section className="py-10">
+    <div className="container grid md:grid-cols-3 gap-8">
       <FeatureCard
         title="Szybka i prosta rezerwacja"
         description="Semper aibers vestibulum fringil voluptate

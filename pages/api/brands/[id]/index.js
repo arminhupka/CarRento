@@ -5,8 +5,9 @@ import {getSession} from 'next-auth/react';
 import dbConnect from '../../../../utils/dbConnect';
 
 // Schemas
-import Car from '../../../../schemas/CarSchema';
 import Brand from '../../../../schemas/BrandSchema';
+// eslint-disable-next-line no-unused-vars
+import Car from '../../../../schemas/CarSchema';
 
 const handler = nc({
   onError: (err, req, res) => {

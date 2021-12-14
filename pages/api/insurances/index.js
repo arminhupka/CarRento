@@ -1,9 +1,11 @@
 import nc from 'next-connect';
+import {getSession} from 'next-auth/react';
+
+// Utils
 import dbConnect from '../../../utils/dbConnect';
 
 // Schema
 import Insurance from '../../../schemas/InsuranceSchema';
-import {getSession} from 'next-auth/react';
 
 const handler = nc({
   onError: (err, req, res) => {
@@ -19,7 +21,7 @@ const handler = nc({
 
     const insurances = await Insurance.find();
 
-    res.json(insurances);
+    return res.json(insurances);
   })
   .post(async (req, res) => {
     const session = await getSession({req});
@@ -77,7 +79,7 @@ const handler = nc({
       replacementCar,
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       message: 'Insurance created',
     });
   });

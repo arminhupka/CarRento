@@ -55,7 +55,7 @@ const ReservationSidebar = ({car}) => {
       returnDate,
     };
 
-    localStorage.setItem('reservations', JSON.stringify(reservation));
+    localStorage.setItem('reservation', JSON.stringify(reservation));
 
     const startDay = moment(pickupDate);
     const endDay = moment(returnDate);

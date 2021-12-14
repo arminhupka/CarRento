@@ -66,9 +66,9 @@ const CarDetails = ({specification, equipment, description}) => {
       {currentTab === 'equipment' && (
         <div className="p-8 bg-white shadow-lg">
           <ul style={{columnCount: 1, listStylePosition: 'inside'}}>
-            {equipment.map((item, index) => (
+            {equipment.map((item) => (
               <li
-                key={index}
+                key={item}
                 className="py-1.5 text-sm font-semibold border-b border-gray-100 before:content-['+'] before:mr-2 before:text-red-500"
               >
                 {item}

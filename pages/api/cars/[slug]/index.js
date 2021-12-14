@@ -5,8 +5,9 @@ import {getSession} from 'next-auth/react';
 import dbConnect from '../../../../utils/dbConnect';
 
 // Schemas
-import Car from '../../../../schemas/CarSchema';
+// eslint-disable-next-line no-unused-vars
 import Brand from '../../../../schemas/BrandSchema';
+import Car from '../../../../schemas/CarSchema';
 
 const handler = nc({
   onError: (err, req, res) => {
@@ -64,7 +65,7 @@ const handler = nc({
 
     await Car.findByIdAndRemove(id);
 
-    res.json({
+    return res.json({
       message: 'Car removed successfully',
     });
   });

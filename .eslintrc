@@ -64,6 +64,12 @@
     ],
     "jsx-a11y/click-events-have-key-events": [
       0
+    ],
+    "no-console": [
+      0
+    ],
+    "react/button-has-type": [
+      0
     ]
   }
 }

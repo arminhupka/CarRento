@@ -6,6 +6,7 @@ import slugify from 'slugify';
 import dbConnect from '../../../utils/dbConnect';
 
 // Schemas
+// eslint-disable-next-line no-unused-vars
 import Car from '../../../schemas/CarSchema';
 import Brand from '../../../schemas/BrandSchema';
 
@@ -41,7 +42,7 @@ const handler = nc({
       slug: slugify(name.toLowerCase()),
     });
 
-    res.json({
+    return res.json({
       message: `Brand ${name} created`,
     });
   });

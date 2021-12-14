@@ -73,7 +73,7 @@ export const getServerSideProps = async (ctx) => {
   if (!session) {
     return {
       redirect: {
-        destination: '/panel',
+        destination: '/logowanie',
         permanent: false,
       },
     };

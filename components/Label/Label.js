@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Label = ({children, ...rest}) => (
   <label className="block mb-2 text-black font-semibold" {...rest}>
     {children}

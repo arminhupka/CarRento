@@ -52,7 +52,8 @@ const SummaryPage = ({insurances}) => {
     return (
       <>
         <Head>
-          <title>Podsumowanie rezerwacji | carRento</title>
+          <title>Podsumowanie | CarRento</title>
+          <meta name="robots" content="noindex" />
         </Head>
         <MainLayout>
           <div className="container">

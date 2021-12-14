@@ -19,7 +19,7 @@ import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 
 const BrandsPage = ({reservations}) => {
   const router = useRouter();
-  const {isVisible, onOpen, onClose} = useModalState();
+  const {isVisible, onClose} = useModalState();
 
   const handleStatusChange = async (id, status) => {
     await axios({
@@ -89,7 +89,7 @@ export const getServerSideProps = async (ctx) => {
   if (!session) {
     return {
       redirect: {
-        destination: '/panel',
+        destination: '/logowanie',
         permanent: false,
       },
     };

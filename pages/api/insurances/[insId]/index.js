@@ -36,7 +36,7 @@ const handler = nc({
 
   await Insurance.findByIdAndDelete(insId);
 
-  res.json(200).json({
+  return res.json(200).json({
     message: 'Insurance removed',
   });
 });

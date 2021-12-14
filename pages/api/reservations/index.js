@@ -7,7 +7,9 @@ import dbConnect from '../../../utils/dbConnect';
 
 // Schemas
 import Reservation from '../../../schemas/ReservationSchema';
+// eslint-disable-next-line no-unused-vars
 import Car from '../../../schemas/CarSchema';
+// eslint-disable-next-line no-unused-vars
 import Brand from '../../../schemas/BrandSchema';
 
 const handler = nc({

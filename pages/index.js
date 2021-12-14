@@ -9,9 +9,7 @@ import MainLayout from '../layouts/MainLayout';
 
 // Components
 import Hero from '../components/Hero/Hero';
-import SearchBar from '../components/SearchBar/SearchBar';
 import WhyUs from '../components/WhyUs/WhyUs';
-import FeaturedCar from '../components/FeaturedCar/FeaturedCar';
 import LastAdded from '../components/LastAddedCars/LasAddedCars';
 
 const HomePage = ({cars}) => (
@@ -21,8 +19,8 @@ const HomePage = ({cars}) => (
     </Head>
     <MainLayout>
       <Hero />
-      <LastAdded cars={cars} />
       <WhyUs />
+      <LastAdded cars={cars} />
     </MainLayout>
   </>
 );

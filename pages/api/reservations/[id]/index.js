@@ -1,15 +1,15 @@
 import nc from 'next-connect';
 import {getSession} from 'next-auth/react';
-import {nanoid} from 'nanoid';
 
 // Utils
 import dbConnect from '../../../../utils/dbConnect';
 
 // Schemas
-import Reservation from '../../../../schemas/ReservationSchema';
+// eslint-disable-next-line no-unused-vars
 import Car from '../../../../schemas/CarSchema';
+// eslint-disable-next-line no-unused-vars
 import Brand from '../../../../schemas/BrandSchema';
-import reservations from '../index';
+import Reservation from '../../../../schemas/ReservationSchema';
 
 const handler = nc({
   onError: (err, req, res) => {
