@@ -1,6 +1,6 @@
 import React from 'react';
 import {getSession, useSession} from 'next-auth/react';
-import {FaCar, FaBrain, FaResearchgate} from 'react-icons/fa';
+import {FaCar, FaBrain, FaUsers, FaUserShield} from 'react-icons/fa';
 
 // Layouts
 import MainLayout from '../../layouts/MainLayout';
@@ -19,8 +19,8 @@ const AdminPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <AdminButton href="/admin/samochody" title="Samochody" icon={<FaCar />} />
           <AdminButton href="/admin/marki" title="Marki" icon={<FaBrain />} />
-          <AdminButton href="/admin/rezerwacje" title="Rezerwacje" icon={<FaResearchgate />} />
-          <AdminButton href="/admin/ubezpieczenia" title="Ubezpieczenia" icon={<FaResearchgate />} />
+          <AdminButton href="/admin/ubezpieczenia" title="Ubezpieczenia" icon={<FaUserShield />} />
+          <AdminButton href="/admin/rezerwacje" title="Rezerwacje" icon={<FaUsers />} />
         </div>
       </div>
     </MainLayout>
