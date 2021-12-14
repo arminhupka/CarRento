@@ -12,13 +12,12 @@ import MainLayout from '../../../layouts/MainLayout';
 import Title from '../../../components/Title/Title';
 import CarDetails from '../../../components/CarDetails/CarDetails';
 import ReservationSidebar from '../../../components/ReservationSidebar/ReservationSidebar';
-import Modal from '../../../components/Modal/Modal';
 
 const CarPage = ({car}) => (
   <MainLayout>
     <div className="container grid grid-cols-1 lg:grid-cols-10 gap-8">
       <article className="lg:col-start-4 lg:col-span-8 lg:row-start-1 flex flex-col gap-8">
-        <Title>
+        <Title withPrice price={car.price}>
           {car.brand.name} {car.model}
         </Title>
         <div className="cars__image-wrapper bg-white">

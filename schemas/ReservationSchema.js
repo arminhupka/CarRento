@@ -2,6 +2,10 @@ import mongoose, {Schema} from 'mongoose';
 
 const ReservationSchema = new Schema(
   {
+    shortId: {
+      type: String,
+      required: true,
+    },
     user: {
       firstName: {
         type: String,
@@ -56,6 +60,10 @@ const ReservationSchema = new Schema(
     },
     returnDate: {
       type: Date,
+      required: true,
+    },
+    status: {
+      type: String,
       required: true,
     },
   },

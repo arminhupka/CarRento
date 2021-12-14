@@ -3,6 +3,7 @@ import dbConnect from '../../../utils/dbConnect';
 
 // Schema
 import Insurance from '../../../schemas/InsuranceSchema';
+import {getSession} from 'next-auth/react';
 
 const handler = nc({
   onError: (err, req, res) => {
@@ -21,6 +22,14 @@ const handler = nc({
     res.json(insurances);
   })
   .post(async (req, res) => {
+    const session = await getSession({req});
+
+    if (!session) {
+      return res.status(401).json({
+        message: 'You are not authorized',
+      });
+    }
+
     const {
       name,
       price,

@@ -27,6 +27,8 @@ const handler = nc({
 })
   .use(upload.single('file'))
   .get(async (req, res) => {
+    const session = await getSession({req});
+
     const {limit} = req.query;
 
     await dbConnect();

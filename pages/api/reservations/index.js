@@ -1,11 +1,14 @@
 import nc from 'next-connect';
 import {getSession} from 'next-auth/react';
+import {nanoid} from 'nanoid';
 
 // Utils
 import dbConnect from '../../../utils/dbConnect';
 
-// Schema
+// Schemas
 import Reservation from '../../../schemas/ReservationSchema';
+import Car from '../../../schemas/CarSchema';
+import Brand from '../../../schemas/BrandSchema';
 
 const handler = nc({
   onError: (err, req, res) => {
@@ -20,16 +23,22 @@ const handler = nc({
     const session = await getSession({req});
 
     if (!session) {
-      return res.status(401).json({
-        message: 'You are not authorized',
-      });
+      return res.json({message: 'No authorization'});
     }
 
     await dbConnect();
 
-    const reservations = await Reservation.find();
+    const reservations = await Reservation.find().populate({
+      path: 'car',
+      populate: {
+        path: 'brand',
+        select: {
+          name: 1,
+        },
+      },
+    });
 
-    res.json(reservations);
+    return res.json(reservations);
   })
   .post(async (req, res) => {
     const {
@@ -62,7 +71,10 @@ const handler = nc({
       });
     }
 
+    const shortId = nanoid(8).toUpperCase();
+
     await Reservation.create({
+      shortId,
       user: {
         firstName,
         lastName,
@@ -78,9 +90,11 @@ const handler = nc({
       pickupDate,
       returnPlace,
       returnDate,
+      status: 'new',
     });
 
-    res.status(201).json({
+    return res.status(201).json({
+      shortId,
       message: 'Reservation created',
     });
   });

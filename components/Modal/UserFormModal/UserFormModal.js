@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import {useRouter} from 'next/router';
 
 // Components
 import Input from '../../Input/Input';
@@ -11,7 +12,10 @@ import Button from '../../Button/Button';
 import Loader from '../../Loader/Loader';
 
 const UserFormModal = ({onClose}) => {
+  const router = useRouter();
+
   const [loading, setLoading] = useState(false);
+  const [reservationData, setReservationData] = useState(null);
 
   const initialState = {
     firstName: '',
@@ -44,7 +48,7 @@ const UserFormModal = ({onClose}) => {
 
     setLoading(true);
 
-    await axios({
+    const {data} = await axios({
       method: 'POST',
       url: '/api/reservations',
       data: {
@@ -66,13 +70,34 @@ const UserFormModal = ({onClose}) => {
       },
     });
 
+    setReservationData(data.shortId);
+
     setLoading(false);
+  };
+
+  const handleCloseButton = () => {
+    localStorage.removeItem('reservation');
+    localStorage.removeItem('insurance');
+    localStorage.removeItem('selectedCar');
+
+    router.push('/');
   };
 
   return (
     <Modal title="Wprowadź swoje dane" onClose={onClose}>
+      {!loading && reservationData && (
+        <div className="flex flex-col items-center space-y-2">
+          <h3 className="text-2xl font-semibold">Twoja rezerwacja została przesłana</h3>
+          <p className="text-xl">
+            Twoje rezerwacja to <span className="font-semibold text-red-500">{reservationData}</span>
+          </p>
+          <Button type="button" onClick={handleCloseButton}>
+            Zamknij
+          </Button>
+        </div>
+      )}
       {loading && <Loader />}
-      {!loading && (
+      {!loading && !reservationData && (
         <Formik initialValues={initialState} onSubmit={handleSubmit} validationSchema={formSchema}>
           {({values, handleSubmit, handleChange, errors}) => (
             <form onSubmit={handleSubmit} className="flex flex-col space-y-4">

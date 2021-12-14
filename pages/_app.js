@@ -8,13 +8,7 @@ const App = ({Component, pageProps}) => (
   <>
     <CallNow />
     <SessionProvider session={pageProps.session}>
-      {Component.auth ? (
-        <AuthProvider component={Component}>
-          <Component {...pageProps} />
-        </AuthProvider>
-      ) : (
-        <Component {...pageProps} />
-      )}
+      <Component {...pageProps} />
     </SessionProvider>
   </>
 );

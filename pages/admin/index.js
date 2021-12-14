@@ -44,8 +44,4 @@ export const getServerSideProps = async (ctx) => {
   };
 };
 
-AdminPage.auth = {
-  role: 'admin',
-};
-
 export default AdminPage;

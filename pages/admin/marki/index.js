@@ -82,8 +82,4 @@ export const getServerSideProps = async (ctx) => {
   };
 };
 
-BrandsPage.auth = {
-  role: 'admin',
-};
-
 export default BrandsPage;

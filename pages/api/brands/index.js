@@ -28,7 +28,7 @@ const handler = nc({
   .post(async (req, res) => {
     const session = await getSession({req});
 
-    if (!session || session.user.role !== 'admin') {
+    if (!session) {
       return res.status(401).end('You are not authorized');
     }
 

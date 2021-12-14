@@ -67,6 +67,7 @@ const SummaryPage = ({insurances}) => {
     <>
       <Head>
         <title>Podsumowanie rezerwacji | carRento</title>
+        <meta name="robots" content="noindex" />
       </Head>
       {isVisible && <UserFormModal onClose={onClose} />}
       <MainLayout>

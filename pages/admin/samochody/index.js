@@ -91,8 +91,4 @@ export const getServerSideProps = async (ctx) => {
   };
 };
 
-CarsPage.auth = {
-  role: 'admin',
-};
-
 export default CarsPage;

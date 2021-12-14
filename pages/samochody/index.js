@@ -99,6 +99,7 @@ const CarsPage = ({cars, brands}) => {
             </div>
           </aside>
           <div className="main grid md:grid-cols-2 lg:col-span-7 gap-8">
+            {filtered.length === 0 && <span className="text-xl font-semibold">Brak wyników</span>}
             {filtered.map((car) => (
               <CarCard
                 key={car._id}
