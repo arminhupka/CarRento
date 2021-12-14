@@ -11,7 +11,7 @@ import Select from '../Select/Select';
 import DateSelect from '../DateSelect/DateSelect';
 import Button from '../Button/Button';
 
-const ReservationSidebar = () => {
+const ReservationSidebar = (car) => {
   const {
     pickupPlace,
     setPickupPlace,
@@ -25,7 +25,7 @@ const ReservationSidebar = () => {
     setReturnDate,
     error,
     submitReservation,
-  } = useReservation();
+  } = useReservation(car);
 
   return (
     <div className="bg-white rounded-md border">
