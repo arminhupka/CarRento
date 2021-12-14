@@ -14,13 +14,14 @@ import MainLayout from '../../../layouts/MainLayout';
 // Components
 import Button from '../../../components/Button/Button';
 import NewBrandModal from '../../../components/Modal/NewBrandModal/NewBrandModal';
+import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 
 const BrandsPage = ({brands}) => {
   const router = useRouter();
   const {isVisible, onOpen, onClose} = useModalState();
 
   const handleRemoveBrand = async (id) => {
-    const {data} = await axios({
+    await axios({
       method: 'DELETE',
       url: `/api/brands/${id}`,
     });
@@ -31,10 +32,7 @@ const BrandsPage = ({brands}) => {
     <MainLayout>
       {isVisible && <NewBrandModal onClose={onClose} />}
       <div className="container">
-        <div className="pb-4 mb-4 flex items-center justify-between border-b">
-          <h1 className="text-3xl font-bold">Marki</h1>
-          <Button onClick={onOpen}>Dodaj +</Button>
-        </div>
+        <SectionTitle withButton title="Marki" buttonTitle="Dodaj +" buttonAction={onOpen} />
         <table className="table-auto w-full bg-white border rounded-md overflow-hidden shadow-lg">
           <thead className="block border-b py-2 text-white bg-red-500">
             <tr className="flex">

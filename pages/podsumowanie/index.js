@@ -14,9 +14,7 @@ import PageHeader from '../../components/PageHeader/PageHeader';
 
 // Utils
 import {daysDiff} from '../../utils/rentCalc';
-
-// Data
-import insurance from '../../data/insurance';
+import api from '../../utils/api';
 
 // Components
 import Button from '../../components/Button/Button';
@@ -26,23 +24,23 @@ import ReservationDetails from '../../components/ReservationDetails/ReservationD
 
 moment.locale('pl');
 
-const overAllCost = (days, carPrice, insuranceId) => {
+const overAllCost = (days, carPrice, insurances, insuranceId) => {
   const carReservationPrice = carPrice * days;
-  const selectedInsurance = insurance.filter((ins) => ins.id === insuranceId);
+  const selectedInsurancePrice = insurances.filter((ins) => ins._id === insuranceId)[0]?.price || 0;
 
-  return carReservationPrice + selectedInsurance[0].price * days;
+  return carReservationPrice + selectedInsurancePrice * days;
 };
 
-const SummaryPage = () => {
+const SummaryPage = ({insurances}) => {
   const {isVisible, onOpen, onClose} = useModalState();
 
   const [reservation, setReservation] = useState(null);
   const [car, setCar] = useState(null);
 
-  const [insuranceId, setInsuranceId] = useState(2);
+  const [insuranceId, setInsuranceId] = useState(insurances[1]._id);
 
   useEffect(() => {
-    setReservation(JSON.parse(localStorage.getItem('reservations')));
+    setReservation(JSON.parse(localStorage.getItem('reservation')));
     setCar(JSON.parse(localStorage.getItem('selectedCar')));
   }, []);
 
@@ -75,7 +73,11 @@ const SummaryPage = () => {
         <PageHeader title="Podsumowanie" />
         <div className="container">
           <ReservationDetails reservation={reservation} car={car} />
-          <Insurances insurancesArr={insurance} selectedInsurance={insuranceId} setSelectedInsurance={setInsuranceId} />
+          <Insurances
+            insurancesArr={insurances}
+            selectedInsurance={insuranceId}
+            setSelectedInsurance={setInsuranceId}
+          />
           <section className="mt-8 space-y-4">
             <div className="pb-4 mb-4 flex items-center justify-between border-b">
               <h3 className="text-3xl font-bold">Podsumowanie kosztów</h3>
@@ -83,7 +85,13 @@ const SummaryPage = () => {
             <div className="p-4 flex flex-col items-end bg-white border rounded-md shadow-md">
               <p className="text-xl font-semibold">Całkowity koszt wynajmu</p>
               <span className="text-3xl text-red-500 font-bold">
-                {overAllCost(daysDiff(reservation.pickupDate, reservation.returnDate), car.price, insuranceId)} PLN
+                {overAllCost(
+                  daysDiff(reservation.pickupDate, reservation.returnDate),
+                  car.price,
+                  insurances,
+                  insuranceId,
+                )}{' '}
+                PLN
               </span>
             </div>
             <div className="flex flex-col">
@@ -96,6 +104,16 @@ const SummaryPage = () => {
       </MainLayout>
     </>
   );
+};
+
+export const getServerSideProps = async () => {
+  const {data: insurances} = await api('/api/insurances');
+
+  return {
+    props: {
+      insurances,
+    },
+  };
 };
 
 export default SummaryPage;

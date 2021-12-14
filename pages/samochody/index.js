@@ -102,6 +102,7 @@ const CarsPage = ({cars, brands}) => {
             {filtered.map((car) => (
               <CarCard
                 key={car._id}
+                id={car._id}
                 model={car.model}
                 brand={car.brand.name}
                 type={car.type}

@@ -11,7 +11,9 @@ const Wrong = () => <FaTimes className="text-red-800" />;
 const InsuranceCard = ({details, selected, setInsurance}) => {
   return (
     <article
-      className={`p-4 bg-white border-2 rounded-md ${details.id === selected && 'border-red-500 shadow-xl'} transition`}
+      className={`p-4 bg-white border-2 rounded-md ${
+        details._id === selected && 'border-red-500 shadow-xl'
+      } transition`}
     >
       <div className="mb-4 text-center">
         <h2 className="text-3xl font-semibold">{details.name}</h2>
@@ -52,8 +54,8 @@ const InsuranceCard = ({details, selected, setInsurance}) => {
           </li>
         </ul>
         <div className="flex flex-col">
-          <Button bordered={selected !== details.id} type="button" onClick={() => setInsurance(details.id)}>
-            {selected === details.id ? 'Wybrano' : 'Wybieram'}
+          <Button bordered={selected !== details._id} type="button" onClick={() => setInsurance(details._id)}>
+            {selected === details._id ? 'Wybrano' : 'Wybieram'}
           </Button>
         </div>
       </div>

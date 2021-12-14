@@ -16,6 +16,7 @@ import MainLayout from '../../../layouts/MainLayout';
 import Button from '../../../components/Button/Button';
 import NewCarModal from '../../../components/Modal/NewCarModal/NewCarModal';
 import PageHeader from '../../../components/PageHeader/PageHeader';
+import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 
 const CarsPage = ({brands, cars}) => {
   const router = useRouter();
@@ -23,7 +24,7 @@ const CarsPage = ({brands, cars}) => {
 
   const handleRemoveCar = async (id) => {
     try {
-      const {data} = await axios({
+      await axios({
         method: 'DELETE',
         url: `/api/cars/${id}`,
       });
@@ -38,10 +39,7 @@ const CarsPage = ({brands, cars}) => {
       <PageHeader title="Administracja" />
       {isVisible && <NewCarModal brands={brands} onClose={onClose} />}
       <div className="container">
-        <div className="pb-4 mb-4 flex items-center justify-between border-b">
-          <h1 className="text-3xl font-bold">Samochody</h1>
-          <Button onClick={onOpen}>Dodaj +</Button>
-        </div>
+        <SectionTitle withButton title="Samochody" buttonTitle="Dodaj +" buttonAction={onOpen} />
         <table className="table-auto w-full bg-white border rounded-md overflow-hidden shadow-lg">
           <thead className="block border-b py-2 text-white bg-red-500">
             <tr className="flex">

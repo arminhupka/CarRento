@@ -10,13 +10,14 @@ import LinkButton from '../LinkButton/LinkButton';
 import Button from '../Button/Button';
 import ReservationModal from '../Modal/ReservationModal/ReservationModal';
 
-const CarCard = ({model, brand, type, transmission, fuel, seats, slug, image, price}) => {
+const CarCard = ({id, model, brand, type, transmission, fuel, seats, slug, image, price}) => {
   const {isVisible, onOpen, onClose} = useModalState();
 
   const handleCarReservation = () => {
     localStorage.setItem(
       'selectedCar',
       JSON.stringify({
+        id,
         model,
         brand,
         type,

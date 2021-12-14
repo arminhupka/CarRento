@@ -20,6 +20,7 @@ const AdminPage = () => {
           <AdminButton href="/admin/samochody" title="Samochody" icon={<FaCar />} />
           <AdminButton href="/admin/marki" title="Marki" icon={<FaBrain />} />
           <AdminButton href="/admin/rezerwacje" title="Rezerwacje" icon={<FaResearchgate />} />
+          <AdminButton href="/admin/ubezpieczenia" title="Ubezpieczenia" icon={<FaResearchgate />} />
         </div>
       </div>
     </MainLayout>

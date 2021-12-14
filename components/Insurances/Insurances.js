@@ -10,7 +10,7 @@ const Insurances = ({insurancesArr, selectedInsurance, setSelectedInsurance}) =>
     <div className="grid gap-4 md:grid-cols-3">
       {insurancesArr.map((option) => (
         <InsuranceCard
-          key={option.id}
+          key={option._id}
           details={option}
           selected={selectedInsurance}
           setInsurance={setSelectedInsurance}
