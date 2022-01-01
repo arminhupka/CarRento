@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import Head from 'next/head';
 import {FaFilter} from 'react-icons/fa';
 
@@ -30,20 +30,20 @@ const CarsPage = ({cars, brands}) => {
   const handleBrandClear = () => setCurrentBrand('');
   const handleModelClear = () => setCurrentModel('');
 
-  useEffect(() => {
+  useMemo(() => {
     brands.forEach((brand) => {
       setBrandsList((prevState) => [...prevState, brand.name]);
     });
   }, []);
 
-  useEffect(() => {
+  useMemo(() => {
     const filteredCars = cars.filter((car) => car.brand.name === currentBrand);
     const avaiableModels = filteredCars.map((car) => car.model);
 
     setModelsList(avaiableModels);
   }, [currentBrand]);
 
-  useEffect(() => {
+  useMemo(() => {
     setFiltered(
       cars.filter(
         (car) =>

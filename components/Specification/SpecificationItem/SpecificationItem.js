@@ -1,5 +1,4 @@
 import React from 'react';
-import Title from '../../Title/Title';
 
 const SpecificationItem = ({icon, title, value}) => (
   <article className="p-4 flex flex-col justify-center items-center border rounded-md">

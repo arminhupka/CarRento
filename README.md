@@ -1,5 +1,27 @@
 #CarRento Next.JS Website
 
+![Loando screenshot](https://i.postimg.cc/sXGRHnpV/localhost-3000-1.png)
+
+Loando is an application for borrowing low sums of money for a short loan period.
+
+### Live Demo
+You can login as admin here demo [here](https://loando.netlify.app/).
+
+Login details **demo@demo.com:demo**
+
+### Features
+- Register and login system
+- User can change email and account number
+- Loan payment is handled by PayU (Dev Account)
+- Loan settings are calculated by API
+
+### Used tools
+- React
+- Redux
+- Styled Components
+- Moment.js
+- Axios
+
 ## Getting Started
 
 First, run the development server:

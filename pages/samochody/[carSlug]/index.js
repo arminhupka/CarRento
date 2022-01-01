@@ -10,7 +10,6 @@ import MainLayout from '../../../layouts/MainLayout';
 
 // Components
 import Title from '../../../components/Title/Title';
-import CarDetails from '../../../components/CarDetails/CarDetails';
 import ReservationSidebar from '../../../components/ReservationSidebar/ReservationSidebar';
 import Specification from '../../../components/Specification/Specification';
 import CarDescription from '../../../components/CarDescription/CarDescription';

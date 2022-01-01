@@ -13,25 +13,6 @@ import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import PageHeader from '../../components/PageHeader/PageHeader';
 
 const LoginPage = () => {
-  const validate = (values) => {
-    const errors = {};
-    if (!values.email) {
-      errors.email = 'Wymagane';
-    } else if (values.email.length > 15) {
-      errors.email = 'Must be 15 characters or less';
-    } else if (!values.email.includes('@')) {
-      errors.email = "It's not email";
-    }
-
-    if (!values.password) {
-      errors.password = 'Required';
-    } else if (values.password.length > 20) {
-      errors.password = 'Must be 20 characters or less';
-    }
-
-    return errors;
-  };
-
   const formik = useFormik({
     initialValues: {
       email: '',

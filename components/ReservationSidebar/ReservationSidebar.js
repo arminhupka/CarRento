@@ -1,6 +1,4 @@
-import React, {useEffect, useState} from 'react';
-import moment from 'moment';
-import {useRouter} from 'next/router';
+import React from 'react';
 
 // Hooks
 import useReservation from '../../hooks/useReservation';
