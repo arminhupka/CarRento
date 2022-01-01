@@ -1,26 +1,38 @@
-#CarRento Next.JS Website
+ #CarRento Next.JS Website
 
 ![Loando screenshot](https://i.postimg.cc/sXGRHnpV/localhost-3000-1.png)
 
-Loando is an application for borrowing low sums of money for a short loan period.
+CarRento is a simple application for a car rental company.
 
 ### Live Demo
-You can login as admin here demo [here](https://loando.netlify.app/).
+Live demo is here [here](https://carrento.netlify.app/) \
+You can login as admin [here](https://carrento.netlify.app/admin).
 
-Login details **demo@demo.com:demo**
+Login details **demo:demo**
 
 ### Features
 - Register and login system
-- User can change email and account number
-- Loan payment is handled by PayU (Dev Account)
-- Loan settings are calculated by API
+- User can send reservations to admin
+- Admin can add new cars, brands, insurances and mark reservations as accepted, rejected etc.
 
 ### Used tools
-- React
-- Redux
-- Styled Components
+- Next.js
+- Tailwind
 - Moment.js
 - Axios
+- Next Auth
+- Slugify
+- MongoDB & Mongoose
+- AWS S3
+- Formik
+- Multer
+- Nanoid
+
+### Things to add
+- Redux for better state management instead of localstorage
+- Email notifications
+- Online payment
+- More complex reservation management
 
 ## Getting Started
 
