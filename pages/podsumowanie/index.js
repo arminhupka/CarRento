@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Head from 'next/head';
 import moment from 'moment';
 import 'moment/locale/pl';
+import axios from 'axios';
 
 // Hooks
 import useModalState from '../../hooks/useModalState';
@@ -14,7 +15,7 @@ import PageHeader from '../../components/PageHeader/PageHeader';
 
 // Utils
 import {daysDiff} from '../../utils/rentCalc';
-import api from '../../utils/api';
+import server from '../../utils/server';
 
 // Components
 import Button from '../../components/Button/Button';
@@ -109,7 +110,7 @@ const SummaryPage = ({insurances}) => {
 };
 
 export const getServerSideProps = async () => {
-  const {data: insurances} = await api('/api/insurances');
+  const {data: insurances} = await axios(`${server}/api/insurances`);
 
   return {
     props: {

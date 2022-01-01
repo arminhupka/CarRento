@@ -4,7 +4,7 @@ import axios from 'axios';
 import {useRouter} from 'next/router';
 
 // Utils
-import api from '../../../utils/api';
+import server from '../../../utils/server';
 
 // Hooks
 import useModalState from '../../../hooks/useModalState';
@@ -79,8 +79,8 @@ export const getServerSideProps = async (ctx) => {
     };
   }
 
-  const {data: brands} = await api('/api/brands');
-  const {data: cars} = await api('/api/cars');
+  const {data: brands} = await axios(`${server}/api/brands`);
+  const {data: cars} = await axios(`${server}/api/cars`);
 
   return {
     props: {

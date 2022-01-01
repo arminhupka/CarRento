@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
+import axios from 'axios';
 
 // Utils
-import api from '../../../utils/api';
+import server from '../../../utils/server';
 
 // Layout
 import MainLayout from '../../../layouts/MainLayout';
@@ -73,7 +74,7 @@ export const getServerSideProps = async (ctx) => {
   const slug = ctx.query.carSlug;
 
   try {
-    const {data} = await api(`/api/cars/${slug}`);
+    const {data} = await axios(`${server}/api/cars/${slug}`);
     return {
       props: {
         car: data,

@@ -1,7 +1,6 @@
 import nc from 'next-connect';
 import {getSession} from 'next-auth/react';
 import slugify from 'slugify';
-import mongoose from 'mongoose';
 
 // Utils
 import dbConnect from '../../../utils/dbConnect';
@@ -41,8 +40,6 @@ const handler = nc({
       })
       .limit(Number(limit) || 0)
       .sort({date: 1});
-
-    await mongoose.disconnect();
 
     res.json(cars);
   })
@@ -91,8 +88,6 @@ const handler = nc({
 
     const selectedBrand = await Brand.findById(brand);
 
-    await mongoose.disconnect();
-
     if (!selectedBrand) {
       return res.status(401).json({
         message: 'You provided wrong brand',
@@ -118,8 +113,6 @@ const handler = nc({
       equipment: [],
       price,
     });
-
-    await mongoose.disconnect();
 
     return res.status(201).json(newCar);
   });

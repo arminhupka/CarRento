@@ -1,8 +1,9 @@
 import React from 'react';
 import Head from 'next/head';
+import axios from 'axios';
 
 // Utils
-import api from '../utils/api';
+import server from '../utils/server';
 
 // Layout
 import MainLayout from '../layouts/MainLayout';
@@ -26,7 +27,7 @@ const HomePage = ({cars}) => (
 );
 
 export const getServerSideProps = async () => {
-  const {data} = await api('/api/cars?limit=3');
+  const {data} = await axios(`${server}/api/cars?limit=3`);
 
   return {
     props: {

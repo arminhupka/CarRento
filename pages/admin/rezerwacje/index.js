@@ -4,7 +4,7 @@ import {FaCheckSquare, FaClock, FaTimes} from 'react-icons/fa';
 import axios from 'axios';
 
 // Utils
-import api from '../../../utils/api';
+import server from '../../../utils/server';
 
 // Hooks
 import useModalState from '../../../hooks/useModalState';
@@ -95,9 +95,7 @@ export const getServerSideProps = async (ctx) => {
     };
   }
 
-  const {data} = await api({
-    method: 'GET',
-    url: '/api/reservations',
+  const {data} = await axios(`${server}/api/reservations`, {
     headers: {
       cookie: ctx.req.headers.cookie,
     },

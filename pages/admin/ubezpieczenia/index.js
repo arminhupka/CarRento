@@ -9,7 +9,7 @@ import MainLayout from '../../../layouts/MainLayout';
 import useModalState from '../../../hooks/useModalState';
 
 // Utils
-import api from '../../../utils/api';
+import server from '../../../utils/server';
 
 // Components
 import PageHeader from '../../../components/PageHeader/PageHeader';
@@ -62,7 +62,7 @@ const InsurancesPage = ({insurances}) => {
 };
 
 export const getServerSideProps = async () => {
-  const {data} = await api('/api/insurances');
+  const {data} = await axios(`${server}/api/insurances`);
 
   return {
     props: {

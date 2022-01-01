@@ -1,12 +1,13 @@
 import React, {useState, useEffect, useMemo} from 'react';
 import Head from 'next/head';
 import {FaFilter} from 'react-icons/fa';
+import axios from 'axios';
 
 // Hooks
 import useModalState from '../../hooks/useModalState';
 
 // Utils
-import api from '../../utils/api';
+import server from '../../utils/server';
 
 // Layout
 import MainLayout from '../../layouts/MainLayout';
@@ -124,8 +125,8 @@ const CarsPage = ({cars, brands}) => {
 };
 
 export const getServerSideProps = async () => {
-  const {data} = await api.get('/api/cars');
-  const {data: brands} = await api.get('/api/brands');
+  const {data} = await axios.get(`${server}/api/cars`);
+  const {data: brands} = await axios.get(`${server}/api/brands`);
 
   return {
     props: {
