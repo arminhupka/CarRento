@@ -5,6 +5,9 @@
 CarRento is a simple application for a car rental company.
 
 ### Live Demo
+**INFORMATION** \
+Adding cars may seem not working but it's Netlify "problem". Netlify has a limit of execution time set to 10 sec for free accounts.
+
 Live demo is here [here](https://carrento.netlify.app/) \
 You can login as admin [here](https://carrento.netlify.app/admin).
 
