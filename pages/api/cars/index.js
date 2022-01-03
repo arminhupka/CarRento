@@ -114,6 +114,8 @@ const handler = nc({
       price,
     });
 
+    await Brand.findByIdAndUpdate(brand, {$push: {cars: newCar}});
+
     return res.status(201).json(newCar);
   });
 
