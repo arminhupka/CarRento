@@ -1,6 +1,7 @@
 import React from 'react';
 import {useRouter} from 'next/router';
 import axios from 'axios';
+import Head from 'next/head';
 
 // Layout
 import MainLayout from '../../../layouts/MainLayout';
@@ -32,6 +33,9 @@ const InsurancesPage = ({insurances}) => {
 
   return (
     <MainLayout>
+      <Head>
+        <title>Ubezpieczenia | CarRento</title>
+      </Head>
       {isVisible && <NewInsuranceModal onClose={onClose} />}
       <PageHeader title="Administracja" />
       <div className="container">

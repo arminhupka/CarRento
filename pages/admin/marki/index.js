@@ -1,4 +1,5 @@
 import React, {useRouter} from 'next/router';
+import Head from 'next/head';
 import {getSession} from 'next-auth/react';
 import axios from 'axios';
 
@@ -30,6 +31,9 @@ const BrandsPage = ({brands}) => {
 
   return (
     <MainLayout>
+      <Head>
+        <title>Marki | CarRento</title>
+      </Head>
       {isVisible && <NewBrandModal onClose={onClose} />}
       <div className="container">
         <SectionTitle withButton title="Marki" buttonTitle="Dodaj +" buttonAction={onOpen} />

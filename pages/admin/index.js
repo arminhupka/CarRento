@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import {getSession, useSession} from 'next-auth/react';
 import {FaCar, FaBrain, FaUsers, FaUserShield} from 'react-icons/fa';
 
@@ -14,6 +15,9 @@ const AdminPage = () => {
 
   return (
     <MainLayout>
+      <Head>
+        <title>Panel administracyjny | CarRento</title>
+      </Head>
       <PageHeader title="Administracja" />
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

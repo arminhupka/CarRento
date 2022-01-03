@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import {getSession} from 'next-auth/react';
 import axios from 'axios';
 import {useRouter} from 'next/router';
@@ -36,6 +37,9 @@ const CarsPage = ({brands, cars}) => {
 
   return (
     <MainLayout>
+      <Head>
+        <title>Samochody | CarRento</title>
+      </Head>
       <PageHeader title="Administracja" />
       {isVisible && <NewCarModal brands={brands} onClose={onClose} />}
       <div className="container">

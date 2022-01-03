@@ -1,4 +1,5 @@
 import React, {useRouter} from 'next/router';
+import Head from 'next/head';
 import {getSession} from 'next-auth/react';
 import {FaCheckSquare, FaClock, FaTimes} from 'react-icons/fa';
 import axios from 'axios';
@@ -35,6 +36,9 @@ const BrandsPage = ({reservations}) => {
 
   return (
     <MainLayout>
+      <Head>
+        <title>Rezerwacje | CarRento</title>
+      </Head>
       {isVisible && <NewBrandModal onClose={onClose} />}
       <div className="container">
         <SectionTitle title="Rezerwacje" />
