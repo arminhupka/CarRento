@@ -1,6 +1,6 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: [`carrento.s3.eu-central-1.amazonaws.com`],
+    domains: [`${process.env.AWS_BUCKET}.${process.env.AWS_ENDPOINT}`],
   },
 };

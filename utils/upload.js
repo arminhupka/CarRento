@@ -8,12 +8,16 @@ aws.config.update({
   region: process.env.AWS_REGION_NAME,
 });
 
-const s3 = new aws.S3({});
+const ep = new aws.Endpoint(process.env.AWS_ENDPOINT);
+
+const s3 = new aws.S3({endpoint: ep});
+
 
 const upload = multer({
   storage: multerS3({
     s3,
     bucket: process.env.AWS_BUCKET,
+    acl: 'public-read',
     contentType: multerS3.AUTO_CONTENT_TYPE,
     metadata(req, file, cb) {
       cb(null, {fieldName: file.fieldname});
